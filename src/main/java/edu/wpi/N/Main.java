@@ -4,6 +4,12 @@ public class Main {
 
   public static void main(String[] args) {
 
-    //App.launch(App.class, args);
+    // specify path to .csv file
+    String pathToFile = Main.class.getResource("csv/MapCoordinates.csv").getPath();
+
+    CSVParser parser = new CSVParser();
+    Graph nodeGraph = parser.parseCSV(pathToFile);
+
+    // App.launch(App.class, args);
   }
 }
