@@ -14,7 +14,6 @@ public class Graph {
     this.edges = new HashMap<String, LinkedList<String>>();
   }
 
-
   /**
    * Search for the node
    *
@@ -28,7 +27,6 @@ public class Graph {
     return null;
   }
 
-
   /**
    * Add new node to the graph
    *
@@ -38,7 +36,6 @@ public class Graph {
     this.nodes.add(node);
   }
 
-
   /**
    * Get all the edges a node is connected with
    *
@@ -46,12 +43,12 @@ public class Graph {
    * @return: List of IDs of nodes, the given node is connected to
    */
   public LinkedList<String> getEdges(String id) {
-    return null;
+    return this.edges.get(id);
   }
-
 
   /**
    * Add an Edge between 2 nodes
+   *
    * @param id1: Id of the first node
    * @param id2: Id of the second node
    */

@@ -11,6 +11,6 @@ public class Main {
     Graph nodeGraph = parser.parseCSV(pathToFile);
 
     // App.launch(App.class, args);
-    
+
   }
 }
