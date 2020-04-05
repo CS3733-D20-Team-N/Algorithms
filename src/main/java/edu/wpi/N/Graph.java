@@ -76,4 +76,8 @@ public class Graph {
       edges.put(id2, nodes);
     }
   }
+
+  public void setScore(String ID, double new_score) {
+
+  }
 }
