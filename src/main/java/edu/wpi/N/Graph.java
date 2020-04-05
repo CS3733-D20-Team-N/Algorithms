@@ -2,6 +2,7 @@ package edu.wpi.N;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Iterator;
 
 public class Graph {
 
@@ -20,9 +21,15 @@ public class Graph {
    * @return: node with the given id
    */
   public Node getNode(String id) {
-    for (int i = 0; i < nodes.size(); i++) {
-      if (this.nodes.get(i).ID.equals(id)) return this.nodes.get(i);
+    Iterator<Node> nodeIt = this.nodes.iterator();
+    Node n;
+    while(nodeIt.hasNext()){
+      n = nodeIt.next();
+      if(n.ID.equals(id)) return n;
     }
+//    for (int i = 0; i < nodes.size(); i++) {
+//      if (this.nodes.get(i).ID.equals(id)) return this.nodes.get(i);
+//    }
     return null;
   }
 
