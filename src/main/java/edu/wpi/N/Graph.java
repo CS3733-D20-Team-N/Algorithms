@@ -1,8 +1,8 @@
 package edu.wpi.N;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Graph {
 
@@ -23,13 +23,13 @@ public class Graph {
   public Node getNode(String id) {
     Iterator<Node> nodeIt = this.nodes.iterator();
     Node n;
-    while(nodeIt.hasNext()){
+    while (nodeIt.hasNext()) {
       n = nodeIt.next();
-      if(n.ID.equals(id)) return n;
+      if (n.ID.equals(id)) return n;
     }
-//    for (int i = 0; i < nodes.size(); i++) {
-//      if (this.nodes.get(i).ID.equals(id)) return this.nodes.get(i);
-//    }
+    //    for (int i = 0; i < nodes.size(); i++) {
+    //      if (this.nodes.get(i).ID.equals(id)) return this.nodes.get(i);
+    //    }
     return null;
   }
 
@@ -82,5 +82,20 @@ public class Graph {
       nodes.add(id1);
       edges.put(id2, nodes);
     }
+  }
+
+  /**
+   * Set/update the score of a node in the graph
+   *
+   * @param ID: ID of a node
+   * @param new_score: New score of the node
+   * @return the updated node
+   */
+  public Node setScore(String ID, double new_score) {
+    Node node = this.getNode(ID);
+    this.nodes.remove(node);
+    node.score = new_score;
+    this.nodes.add(node);
+    return node;
   }
 }
