@@ -21,7 +21,7 @@ public class Pathfinder {
 
     //heuristic function
     public double heuristic(Node currNode){
-        return Math.sqrt((end.xcoord-currNode.xcoord)+(end.ycoord-currNode.ycoord));
+        return Math.abs(end.xcoord-currNode.xcoord)+ Math.abs(end.ycoord-currNode.ycoord);
     }
 
     //path finder
