@@ -59,12 +59,21 @@ public class Graph {
     // don't do anything.
     // We must be able add an edge between nodes, which don't exist yet (this condition will make it
     // faster for us to parse CSV file)
-    if (!this.edges.containsKey(id1 + "_" + id2) && !this.edges.containsKey(id2 + "_" + id1)) {
-      String key = "id1" + "_" + "id2";
-      LinkedList<String> nodes = new LinkedList<String>();
-      nodes.add(id1);
+    if (edges.get(id1) == null) {
+      edges.put(id1, new LinkedList<String>());
+    }
+    if (edges.get(id2) == null) {
+      edges.put(id2, new LinkedList<String>());
+    }
+    if (!edges.get(id1).contains(id2)) {
+      LinkedList<String> nodes = edges.get(id1);
       nodes.add(id2);
-      edges.put(key, nodes);
+      edges.put(id1, nodes);
+    }
+    if (!edges.get(id2).contains(id1)) {
+      LinkedList<String> nodes = edges.get(id2);
+      nodes.add(id1);
+      edges.put(id2, nodes);
     }
   }
 }

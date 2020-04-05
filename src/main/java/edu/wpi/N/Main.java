@@ -9,7 +9,7 @@ public class Main {
 
     CSVParser parser = new CSVParser();
     Graph nodeGraph = parser.parseCSV(pathToFile);
-
+    System.out.println("check");
     // App.launch(App.class, args);
 
   }
