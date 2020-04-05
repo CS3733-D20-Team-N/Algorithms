@@ -14,7 +14,8 @@ public class CSVParser {
    */
   public Graph parseCSV(String pathToFile) {
     // Initialize graph
-    graphFromCSV = new Graph();
+    this.graphFromCSV = new Graph();
+
     try {
       // Create an object of filereader
       FileReader fileReader = new FileReader(pathToFile);
@@ -25,16 +26,16 @@ public class CSVParser {
 
       // Read header
       csvReader.readNext();
+
       // Read data line by line except header
       while ((nextLine = csvReader.readNext()) != null) {
-
         // Read respective columns of the row and add Nodes and Edges to graph
         parseRow(nextLine);
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return graphFromCSV;
+    return this.graphFromCSV;
   }
 
   /**
@@ -43,19 +44,23 @@ public class CSVParser {
    * @param row: a row to parse data from
    */
   private void parseRow(String[] row) {
-    String id = row[0];
-    double xcoord = Double.parseDouble(row[1]);
-    double ycoord = Double.parseDouble(row[3]);
-    String[] edgesTo = row[10].split(",");
+    try {
+      String id = row[0];
+      double xcoord = Double.parseDouble(row[1]);
+      double ycoord = Double.parseDouble(row[3]);
+      String[] edgesTo = row[10].split(",");
 
-    // Create new node (location)
-    Node node = new Node(xcoord, ycoord, id);
-    // Add to Graph
-    graphFromCSV.addNode(node);
+      // Create new node (location)
+      Node node = new Node(xcoord, ycoord, id);
+      // Add to Graph
+      this.graphFromCSV.addNode(node);
 
-    // Add edge(s)
-    for (String adjNode : edgesTo) {
-      graphFromCSV.addEdge(id, adjNode);
+      // Add edge(s)
+      for (String adjNode : edgesTo) {
+        this.graphFromCSV.addEdge(id, adjNode);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 }

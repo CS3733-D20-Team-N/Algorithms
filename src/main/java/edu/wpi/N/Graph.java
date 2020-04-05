@@ -43,7 +43,7 @@ public class Graph {
    * @return: List of IDs of nodes, the given node is connected to
    */
   public LinkedList<String> getEdges(String id) {
-    return null;
+    return this.edges.get(id);
   }
 
   /**
@@ -53,7 +53,7 @@ public class Graph {
    * @param id2: Id of the second node
    */
   public void addEdge(String id1, String id2) {
-    //TODO:
+    // TODO:
     // Add id2 to the list of "connections" of id1
     // Add id1 to the list of "connections" of id2
     // Make sure to check for overlap. I.e. if there is an edge between id1 and id2 already, then

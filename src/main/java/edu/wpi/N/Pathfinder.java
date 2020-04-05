@@ -13,13 +13,14 @@ public class Pathfinder {
   }
 
   /**
-   * Function calculates Euclidean distance between start and current Node
+   * Function calculates Euclidean distance between start and current Node (cost of given node)
    *
    * @param currNode: current Node
    * @return: Euclidean distance from the start
    */
   public double cost(Node currNode) {
-    return 0;
+    return Math.sqrt(
+        Math.pow(start.xcoord - currNode.xcoord, 2) + Math.pow(start.ycoord - currNode.ycoord, 2));
   }
 
   /**
