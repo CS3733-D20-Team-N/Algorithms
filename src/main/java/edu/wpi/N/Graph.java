@@ -2,12 +2,11 @@ package edu.wpi.N;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class Graph {
 
   LinkedList<Node> nodes;
-  Map<String, LinkedList<String>> edges;
+  HashMap<String, LinkedList<String>> edges;
 
   public Graph() {
     this.nodes = new LinkedList<Node>();
@@ -60,5 +59,12 @@ public class Graph {
     // don't do anything.
     // We must be able add an edge between nodes, which don't exist yet (this condition will make it
     // faster for us to parse CSV file)
+    if (!this.edges.containsKey(id1 + "_" + id2) && !this.edges.containsKey(id2 + "_" + id1)) {
+      String key = "id1" + "_" + "id2";
+      LinkedList<String> nodes = new LinkedList<String>();
+      nodes.add(id1);
+      nodes.add(id2);
+      edges.put(key, nodes);
+    }
   }
 }
