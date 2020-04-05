@@ -1,6 +1,7 @@
 package edu.wpi.N;
 
 import java.util.LinkedList;
+import java.lang.Math;
 
 public class Pathfinder {
     Graph graph;
@@ -20,7 +21,7 @@ public class Pathfinder {
 
     //heuristic function
     public double heuristic(Node currNode){
-        return 0;
+        return Math.sqrt((end.xcoord-currNode.xcoord)+(end.ycoord-currNode.ycoord));
     }
 
     //path finder
