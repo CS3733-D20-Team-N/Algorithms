@@ -13,15 +13,12 @@ public class Node implements Comparable<Node> {
 
   @Override
   public int compareTo(Node other) {
-    if(this.score > other.score) {
+    if (this.score > other.score) {
       return 1;
     }
 
-    if(this.score < other.score) {
+    if (this.score < other.score) {
       return -1;
-    }
-
-    else
-      return 0;
+    } else return 0;
   }
 }

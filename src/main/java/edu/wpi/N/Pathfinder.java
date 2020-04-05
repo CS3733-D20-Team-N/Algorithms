@@ -16,7 +16,8 @@ public class Pathfinder {
   }
 
   /**
-   * Function calculates Euclidean distance between the next Node and current Node (cost of given node)
+   * Function calculates Euclidean distance between the next Node and current Node (cost of given
+   * node)
    *
    * @param currNode: current Node
    * @param nextNode: next Node
@@ -24,7 +25,8 @@ public class Pathfinder {
    */
   public double cost(Node currNode, Node nextNode) {
     return Math.sqrt(
-        Math.pow(nextNode.xcoord - currNode.xcoord, 2) + Math.pow(nextNode.ycoord - currNode.ycoord, 2));
+        Math.pow(nextNode.xcoord - currNode.xcoord, 2)
+            + Math.pow(nextNode.ycoord - currNode.ycoord, 2));
   }
 
   /**
@@ -51,29 +53,35 @@ public class Pathfinder {
     cost_so_far.put(start.ID, 0.0);
     start.score = 0;
 
-    while(!frontier.isEmpty()) {
+    while (!frontier.isEmpty()) {
       Node current = frontier.poll();
 
-      if(current == end) {
+      if (current == end) {
         break;
       }
 
-      for(String next : graph.getEdges(current.ID)) {
-        double new_cost = cost_so_far.get(next) + this.cost(graph.getNode(next), current);
-        if(cost_so_far.get(next) != null || new_cost < cost_so_far.get(next)) {
-          cost_so_far.put(next, new_cost);
-          double priority = new_cost + heuristic(graph.getNode(next));
-
-
-
+      for (String nextID : graph.getEdges(current.ID)) {
+        Node next_node = graph.getNode(nextID);
+        double new_cost = cost_so_far.get(current.ID) + this.cost(next_node, current);
+        if (!cost_so_far.containsKey(nextID) || new_cost < cost_so_far.get(nextID)) {
+          cost_so_far.put(nextID, new_cost);
+          double priority = new_cost + heuristic(next_node);
+          next_node = graph.setScore(nextID, priority);
+          frontier.add(next_node);
+          came_from.put(nextID, current.ID);
         }
-
-
       }
-
     }
 
+    String currentID = end.ID;
+    LinkedList<Node> path = new LinkedList<Node>();
+    path.add(this.graph.getNode(currentID));
 
-    return null;
+    while (currentID != start.ID) {
+      currentID = came_from.get(currentID);
+      path.add(this.graph.getNode(currentID));
+    }
+
+    return path;
   }
 }
