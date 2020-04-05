@@ -9,8 +9,8 @@ public class Main {
 
     CSVParser parser = new CSVParser();
     Graph nodeGraph = parser.parseCSV(pathToFile);
-
-    // App.launch(App.class, args);
     
+    // App.launch(App.class, args);
+
   }
 }

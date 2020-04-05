@@ -14,7 +14,6 @@ public class Graph {
     this.edges = new HashMap<String, LinkedList<String>>();
   }
 
-
   /**
    * Search for the node
    *
@@ -28,7 +27,6 @@ public class Graph {
     return null;
   }
 
-
   /**
    * Add new node to the graph
    *
@@ -37,7 +35,6 @@ public class Graph {
   public void addNode(Node node) {
     this.nodes.add(node);
   }
-
 
   /**
    * Get all the edges a node is connected with
@@ -49,11 +46,19 @@ public class Graph {
     return null;
   }
 
-
   /**
    * Add an Edge between 2 nodes
+   *
    * @param id1: Id of the first node
    * @param id2: Id of the second node
    */
-  public void addEdge(String id1, String id2) {}
+  public void addEdge(String id1, String id2) {
+    //TODO:
+    // Add id2 to the list of "connections" of id1
+    // Add id1 to the list of "connections" of id2
+    // Make sure to check for overlap. I.e. if there is an edge between id1 and id2 already, then
+    // don't do anything.
+    // We must be able add an edge between nodes, which don't exist yet (this condition will make it
+    // faster for us to parse CSV file)
+  }
 }
