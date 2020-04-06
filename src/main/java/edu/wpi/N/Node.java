@@ -1,14 +1,29 @@
 package edu.wpi.N;
 
 public class Node implements Comparable<Node> {
-  double xcoord, ycoord, score;
+  private double xcoord, ycoord;
+  public double score;
   String ID;
 
   public Node(double xcoord, double ycoord, String id) {
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.ID = id;
-    this.score = score;
+  }
+
+  public double getX() {
+    return xcoord;
+  }
+
+  public double getY() {
+    return ycoord;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof Node)) return false;
+    Node other = (Node) o;
+    return this.ID.equals(other.ID);
   }
 
   @Override

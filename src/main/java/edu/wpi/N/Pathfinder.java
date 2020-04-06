@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Pathfinder {
-  Graph graph;
-  Node start, end;
+  private Graph graph;
+  private Node start, end;
 
   public Pathfinder(Graph graph, Node start, Node end) {
     this.graph = graph;
@@ -23,20 +23,20 @@ public class Pathfinder {
    * @param nextNode: next Node
    * @return: Euclidean distance from the start
    */
-  public double cost(Node currNode, Node nextNode) {
+  private static double cost(Node currNode, Node nextNode) {
     return Math.sqrt(
-        Math.pow(nextNode.xcoord - currNode.xcoord, 2)
-            + Math.pow(nextNode.ycoord - currNode.ycoord, 2));
+        Math.pow(nextNode.getX() - currNode.getX(), 2)
+            + Math.pow(nextNode.getY() - currNode.getY(), 2));
   }
 
   /**
    * Function calculates Manhatten distance between goal and current Node
    *
    * @param currNode: current Node
-   * @return: Manhatten distance to the goal Node
+   * @return: Manhattan distance to the goal Node
    */
-  public double heuristic(Node currNode) {
-    return Math.abs(end.xcoord - currNode.xcoord) + Math.abs(end.ycoord - currNode.ycoord);
+  private static double heuristic(Node currNode, Node end) {
+    return Math.abs(end.getX() - currNode.getX()) + Math.abs(end.getY() - currNode.getY());
   }
 
   /**
@@ -62,11 +62,12 @@ public class Pathfinder {
 
       for (String nextID : graph.getEdges(current.ID)) {
         Node next_node = graph.getNode(nextID);
-        double new_cost = cost_so_far.get(current.ID) + this.cost(next_node, current);
+        double new_cost = cost_so_far.get(current.ID) + cost(next_node, current);
         if (!cost_so_far.containsKey(nextID) || new_cost < cost_so_far.get(nextID)) {
           cost_so_far.put(nextID, new_cost);
-          double priority = new_cost + heuristic(next_node);
-          next_node = graph.setScore(nextID, priority);
+          double priority = new_cost + heuristic(next_node, end);
+          next_node = graph.getNode(nextID);
+          next_node.score = priority;
           frontier.add(next_node);
           came_from.put(nextID, current.ID);
         }
@@ -77,7 +78,7 @@ public class Pathfinder {
     LinkedList<Node> path = new LinkedList<Node>();
     path.add(this.graph.getNode(currentID));
 
-    while (currentID != start.ID) {
+    while (!currentID.equals(start.ID)) {
       currentID = came_from.get(currentID);
       path.add(this.graph.getNode(currentID));
     }

@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 public class Graph {
 
-  LinkedList<Node> nodes;
-  HashMap<String, LinkedList<String>> edges;
+  private LinkedList<Node> nodes;
+  private HashMap<String, LinkedList<String>> edges;
 
   public Graph() {
     this.nodes = new LinkedList<Node>();
@@ -27,9 +27,6 @@ public class Graph {
       n = nodeIt.next();
       if (n.ID.equals(id)) return n;
     }
-    //    for (int i = 0; i < nodes.size(); i++) {
-    //      if (this.nodes.get(i).ID.equals(id)) return this.nodes.get(i);
-    //    }
     return null;
   }
 
@@ -66,36 +63,16 @@ public class Graph {
     // don't do anything.
     // We must be able add an edge between nodes, which don't exist yet (this condition will make it
     // faster for us to parse CSV file)
-    if (edges.get(id1) == null) {
-      edges.put(id1, new LinkedList<String>());
-    }
-    if (edges.get(id2) == null) {
-      edges.put(id2, new LinkedList<String>());
-    }
+    edges.computeIfAbsent(id1, k -> new LinkedList<String>());
+    edges.computeIfAbsent(id2, k -> new LinkedList<String>());
     if (!edges.get(id1).contains(id2)) {
       LinkedList<String> nodes = edges.get(id1);
       nodes.add(id2);
-      edges.put(id1, nodes);
     }
     if (!edges.get(id2).contains(id1)) {
       LinkedList<String> nodes = edges.get(id2);
       nodes.add(id1);
-      edges.put(id2, nodes);
     }
   }
 
-  /**
-   * Set/update the score of a node in the graph
-   *
-   * @param ID: ID of a node
-   * @param new_score: New score of the node
-   * @return the updated node
-   */
-  public Node setScore(String ID, double new_score) {
-    Node node = this.getNode(ID);
-    this.nodes.remove(node);
-    node.score = new_score;
-    this.nodes.add(node);
-    return node;
-  }
 }
