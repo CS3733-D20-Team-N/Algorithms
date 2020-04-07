@@ -1,7 +1,6 @@
 package edu.wpi.N;
 
 import java.io.InputStream;
-import java.util.LinkedList;
 
 public class Main {
 
@@ -15,7 +14,7 @@ public class Main {
     Node startNode = nodeGraph.getNode("MOHSClinic");
     Node endNode = nodeGraph.getNode("HVMANeurology");
     Pathfinder newPath = new Pathfinder(nodeGraph, startNode, endNode);
-    LinkedList<Node> myPath = newPath.pathfinder();
+    Path myPath = newPath.findPath();
 
     System.out.println("check");
     // App.launch(App.class, args);
