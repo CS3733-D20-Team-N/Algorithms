@@ -32,7 +32,7 @@ public class Pathfinder {
    * @param currNode: current Node
    * @return: Manhattan distance to the goal Node
    */
-  private static double heuristic(Node currNode, Node end) {
+  static double heuristic(Node currNode, Node end) {
     return Math.abs(end.getX() - currNode.getX()) + Math.abs(end.getY() - currNode.getY());
   }
 
