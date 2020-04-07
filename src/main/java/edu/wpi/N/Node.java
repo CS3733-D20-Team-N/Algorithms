@@ -31,7 +31,6 @@ public class Node implements Comparable<Node> {
     if (this.score > other.score) {
       return 1;
     }
-
     if (this.score < other.score) {
       return -1;
     } else return 0;

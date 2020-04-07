@@ -1,9 +1,6 @@
 package edu.wpi.N;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Pathfinder {
   private Graph graph;
@@ -42,9 +39,10 @@ public class Pathfinder {
   /**
    * Finds the shortest path from Start to Goal node
    *
-   * @return the shortest path to the goal Node from Start Node
+   * @return Path object indicating the shortest path to the goal Node from Start Node
    */
-  public LinkedList<Node> pathfinder() {
+  public Path findPath() {
+    // Initialize variables
     PriorityQueue<Node> frontier = new PriorityQueue<Node>();
     frontier.add(start);
     Map<String, String> came_from = new HashMap<String, String>();
@@ -53,26 +51,48 @@ public class Pathfinder {
     cost_so_far.put(start.ID, 0.0);
     start.score = 0;
 
+    // While priority queue is not empty, get the node with highest Score (priority)
     while (!frontier.isEmpty()) {
       Node current = frontier.poll();
 
+      // if the goal node was found, break out of the loop
       if (current == end) {
         break;
       }
 
-      for (String nextID : graph.getEdges(current.ID)) {
-        Node next_node = graph.getNode(nextID);
+      // for every node (next node), current node has edge to:
+      for (String nextNodeID : graph.getEdges(current.ID)) {
+        Node next_node = graph.getNode(nextNodeID);
+        // calculate the cost of next node
         double new_cost = cost_so_far.get(current.ID) + cost(next_node, current);
-        if (!cost_so_far.containsKey(nextID) || new_cost < cost_so_far.get(nextID)) {
-          cost_so_far.put(nextID, new_cost);
+
+        if (!cost_so_far.containsKey(nextNodeID) || new_cost < cost_so_far.get(nextNodeID)) {
+          // update the cost of nextNode
+          cost_so_far.put(nextNodeID, new_cost);
+          // calculate and update the Score of nextNode
           double priority = new_cost + heuristic(next_node, end);
-          next_node = graph.getNode(nextID);
+          next_node = graph.getNode(nextNodeID);
           next_node.score = priority;
+          // add to the priority queue
           frontier.add(next_node);
-          came_from.put(nextID, current.ID);
+          // keep track of where nodes come from
+          // to generate the path to goal node
+          came_from.put(nextNodeID, current.ID);
         }
       }
     }
+
+    // Generate and return the path in proper order
+    return this.generatePath(came_from);
+  }
+
+  /**
+   * Helper function which generates Path given a Map
+   *
+   * @param came_from: Map, where key: NodeID, value: came-from-NodeID
+   * @return Path object with generated path
+   */
+  private Path generatePath(Map<String, String> came_from) {
 
     String currentID = end.ID;
     LinkedList<Node> path = new LinkedList<Node>();
@@ -83,6 +103,28 @@ public class Pathfinder {
       path.add(this.graph.getNode(currentID));
     }
 
-    return path;
+    // reverse the path, so it stores nodes in proper order
+    LinkedList<Node> reversedPath = reversePath(path);
+    Path finalPath = new Path(reversedPath);
+
+    return finalPath;
+  }
+
+  /**
+   * Helper function that reverses a given list
+   *
+   * @param initialPath: list which needs to be reversed
+   * @return: reversed list
+   */
+  private LinkedList<Node> reversePath(LinkedList<Node> initialPath) {
+    LinkedList<Node> reversedPath = new LinkedList<Node>();
+
+    // iterate through initial path in descending order
+    Iterator i = initialPath.descendingIterator();
+    while (i.hasNext()) {
+      // add nodes to reversed path
+      reversedPath.add((Node) i.next());
+    }
+    return reversedPath;
   }
 }
