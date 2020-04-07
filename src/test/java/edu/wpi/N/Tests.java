@@ -14,7 +14,7 @@ public class Tests {
   Node startNode = testGraph.getNode("MOHSClinic");
   Node endNode = testGraph.getNode("HVMANeurology");
   Pathfinder newPath = new Pathfinder(testGraph, startNode, endNode);
-  LinkedList<Node> myPath = newPath.pathfinder();
+  Path myPath = newPath.findPath();
 
   /** Tests that getEdges(nodeID) returns the correct list of edges for a given node */
   @Test
