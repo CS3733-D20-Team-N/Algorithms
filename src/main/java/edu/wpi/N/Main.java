@@ -1,6 +1,6 @@
 package edu.wpi.N;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Main {
@@ -8,11 +8,10 @@ public class Main {
   public static void main(String[] args) {
 
     // relative path to .csv file
-    File file = new File("src/main/resources/edu/wpi/N/csv/MapCoordinates.csv");
-    String pathToFile = file.getAbsolutePath();
+    InputStream input = Main.class.getResourceAsStream("csv/MapCoordinates.csv");
 
     CSVParser parser = new CSVParser();
-    Graph nodeGraph = parser.parseCSV(pathToFile);
+    Graph nodeGraph = parser.parseCSV(input);
     Node startNode = nodeGraph.getNode("MOHSClinic");
     Node endNode = nodeGraph.getNode("HVMANeurology");
     Pathfinder newPath = new Pathfinder(nodeGraph, startNode, endNode);
@@ -20,6 +19,5 @@ public class Main {
 
     System.out.println("check");
     // App.launch(App.class, args);
-
   }
 }

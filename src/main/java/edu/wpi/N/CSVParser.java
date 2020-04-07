@@ -1,7 +1,8 @@
 package edu.wpi.N;
 
 import com.opencsv.CSVReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class CSVParser {
   private Graph graphFromCSV;
@@ -12,15 +13,13 @@ public class CSVParser {
    * @param pathToFile: path to CSV file
    * @return Graph created from given CSV file
    */
-  public Graph parseCSV(String pathToFile) {
+  public Graph parseCSV(InputStream pathToFile) {
     // Initialize graph
     this.graphFromCSV = new Graph();
 
     try {
-      // Create an object of filereader
-      FileReader fileReader = new FileReader(pathToFile);
       // create csvReader object passing
-      CSVReader csvReader = new CSVReader(fileReader);
+      CSVReader csvReader = new CSVReader(new InputStreamReader(pathToFile, "UTF-8"));
 
       String[] nextLine;
 
