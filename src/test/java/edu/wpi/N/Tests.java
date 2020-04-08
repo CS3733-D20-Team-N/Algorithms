@@ -115,4 +115,69 @@ public class Tests {
     Node testNode2 = new Node(0, 1, "TESTNODE2");
     assertEquals(newPath.heuristic(testNode1, testNode2), 2, 0.0001);
   }
+
+  /**
+   * Tests that getNode(nodeID) returns the correct node when given a nodeID that is in the graph
+   */
+  @Test
+  public void getNodeTester() {
+    Node testNode = new Node(5.762, 0.646, "MOHSClinic");
+    assertEquals(testGraph.getNode("MOHSClinic"), testNode);
+
+    Node testNode2 = new Node(6.532, 4.562, "HALL10");
+    assertEquals(testGraph.getNode("HALL10"), testNode2);
+  }
+
+  /**
+   * Tests that getNode(nodeID) returns null when given an nodeID that isn't in the graph or doesn't
+   * exist at all
+   */
+  @Test
+  public void getNodeNullTester() {
+    // Call getNode on node that doesn't exist at all
+    assertNull(testGraph.getNode("test1"));
+
+    // Call getNode on node that exists but not isn't in the graph
+    Node testNode2 = new Node(6.5, 2.0, "test2");
+    assertNull(testGraph.getNode("test2"));
+  }
+
+  /** Tests that addNode(node) adds the given node to the graph */
+  @Test
+  public void addNodeTester() {
+    Node testNode = new Node(7.3, 4.6, "testNode1");
+    testGraph.addNode(testNode);
+    assertEquals(testGraph.getNode("testNode1"), testNode);
+
+    Node testNode2 = new Node(10.8, 5.5, "testNode1");
+    testGraph.addNode(testNode2);
+    assertEquals(testGraph.getNode("testNode1"), testNode2);
+  }
+
+  /**
+   * Tests that addNode(node) doesn't add the given node to the graph if it has the same ID as
+   * another node in the graph
+   * (future test to implement once functionality is added)
+   */
+
+
+  /** Tests that cost(currNode, nextNode) returns the correct cost value for nodes in the graph */
+  @Test
+  public void costTester() {
+    assertEquals(
+        newPath.cost(testGraph.getNode("MOHSClinic"), testGraph.getNode("Neurology")),
+        2.641,
+        0.005);
+  }
+
+  /**
+   * Tests that cost(currNode, nextNode) returns the correct value for nodes even if they aren't in
+   * a graph
+   */
+  @Test
+  public void costNotInGraphTester() {
+    Node testNode = new Node(0, 0, "node1");
+    Node testNode2 = new Node(3, 4, "node2");
+    assertEquals(newPath.cost(testNode, testNode2), 5, 0.0001);
+  }
 }

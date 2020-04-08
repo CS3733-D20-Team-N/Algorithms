@@ -36,6 +36,9 @@ public class Graph {
    * @param node
    */
   public void addNode(Node node) {
+    // TODO:
+    // Need to change functionality so that it doesn't add a node that has the same ID as one
+    // already in the list
     this.nodes.add(node);
   }
 
