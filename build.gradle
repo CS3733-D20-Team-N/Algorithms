@@ -78,8 +78,8 @@ jacocoTestCoverageVerification {
                 minimum = 1.0
             }
             excludes = [
-                    'edu.wpi.teamname.App',
-                    'edu.wpi.teamname.Main',
+                    'edu.wpi.N.App',
+                    'edu.wpi.N.Main',
             ]
         }
 
@@ -91,8 +91,8 @@ jacocoTestCoverageVerification {
                 minimum = 0.25
             }
             excludes = [
-                    'edu.wpi.teamname.App',
-                    'edu.wpi.teamname.Main',
+                    'edu.wpi.N.App',
+                    'edu.wpi.N.Main',
             ]
         }
 
