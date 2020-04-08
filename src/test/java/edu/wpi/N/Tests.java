@@ -156,10 +156,8 @@ public class Tests {
 
   /**
    * Tests that addNode(node) doesn't add the given node to the graph if it has the same ID as
-   * another node in the graph
-   * (future test to implement once functionality is added)
+   * another node in the graph (future test to implement once functionality is added)
    */
-
 
   /** Tests that cost(currNode, nextNode) returns the correct cost value for nodes in the graph */
   @Test
