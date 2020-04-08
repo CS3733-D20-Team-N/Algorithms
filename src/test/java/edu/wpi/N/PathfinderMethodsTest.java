@@ -269,26 +269,7 @@ public class PathfinderMethodsTest {
     }
   }
 
-  /**
-   * to test reversePath: uncomment the necessary test methods make the reversePath method public
-   * just for the time of testing, then switch back to private after test
-   * session @DisplayName("reversePath: input a linked list") @Test public void testReversePath1() {
-   * LinkedList<Node> initialTestPath = new LinkedList<>(); Node n1 = new Node(1, 2, "n1"); Node n2
-   * = new Node(1, 2, "n2"); Node n3 = new Node(1, 2, "n3");
-   *
-   * <p>initialTestPath.add(n1); initialTestPath.add(n2); initialTestPath.add(n3);
-   *
-   * <p>LinkedList<Node> actualReversedTestPath = new LinkedList<>();
-   * actualReversedTestPath.add(n3); actualReversedTestPath.add(n2); actualReversedTestPath.add(n1);
-   *
-   * <p>Assertions.assertEquals(Pathfinder.reversePath(initialTestPath), actualReversedTestPath);
-   * } @DisplayName("reversePath: input an empty linked list") @Test public void testReversePath2()
-   * { LinkedList<Node> initTestPath = new LinkedList<>();
-   *
-   * <p>Assertions.assertEquals(Pathfinder.reversePath(initTestPath), new LinkedList<>()); }
-   */
-
-  //  to test generatePath: uncomment the necessary test methods make the reversePath method public
+  //  to test generatePath: uncomment the necessary test methods make the method itself public
   //  just for the time of testing, then switch back to private after test
   //  @DisplayName("generatePath: (normal case) input a map")
   //  @Test
