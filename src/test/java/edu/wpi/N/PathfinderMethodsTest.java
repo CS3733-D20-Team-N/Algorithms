@@ -1,8 +1,5 @@
-package edu.wpi.teamname;
+package edu.wpi.N;
 
-import edu.wpi.N.Graph;
-import edu.wpi.N.Node;
-import edu.wpi.N.Pathfinder;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,5 @@
-package edu.wpi.teamname;
+package edu.wpi.N;
 
-import edu.wpi.N.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
