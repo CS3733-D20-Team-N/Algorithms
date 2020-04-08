@@ -90,7 +90,7 @@ public class Pathfinder {
    * Helper function which generates Path given a Map
    *
    * @param came_from: Map, where key: NodeID, value: came-from-NodeID
-   * @return Path object with generated path
+   * @return Path object containing generated path
    */
   private Path generatePath(Map<String, String> came_from) {
 
@@ -98,11 +98,15 @@ public class Pathfinder {
     LinkedList<Node> path = new LinkedList<Node>();
     path.add(this.graph.getNode(currentID));
 
-    while (!currentID.equals(start.ID)) {
-      currentID = came_from.get(currentID);
-      path.add(this.graph.getNode(currentID));
+    try {
+      while (!currentID.equals(start.ID)) {
+        currentID = came_from.get(currentID);
+        path.add(this.graph.getNode(currentID));
+      }
+    } catch (NullPointerException e) {
+      System.out.println("Location was not found.");
+      throw e;
     }
-
     // reverse the path, so it stores nodes in proper order
     LinkedList<Node> reversedPath = reversePath(path);
     Path finalPath = new Path(reversedPath);
@@ -116,7 +120,7 @@ public class Pathfinder {
    * @param initialPath: list which needs to be reversed
    * @return: reversed list
    */
-  private LinkedList<Node> reversePath(LinkedList<Node> initialPath) {
+  private static LinkedList<Node> reversePath(LinkedList<Node> initialPath) {
     LinkedList<Node> reversedPath = new LinkedList<Node>();
 
     // iterate through initial path in descending order

@@ -56,6 +56,7 @@ public class CSVParser {
 
       // Add edge(s)
       for (String adjNode : edgesTo) {
+        adjNode.replaceAll("\\s", "");
         this.graphFromCSV.addEdge(id, adjNode);
       }
     } catch (Exception e) {
