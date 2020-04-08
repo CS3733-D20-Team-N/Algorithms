@@ -20,7 +20,7 @@ public class Pathfinder {
    * @param nextNode: next Node
    * @return: Euclidean distance from the start
    */
-  private static double cost(Node currNode, Node nextNode) {
+  static double cost(Node currNode, Node nextNode) {
     return Math.sqrt(
         Math.pow(nextNode.getX() - currNode.getX(), 2)
             + Math.pow(nextNode.getY() - currNode.getY(), 2));
