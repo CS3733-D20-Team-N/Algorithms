@@ -16,7 +16,8 @@ public class Main {
     Pathfinder newPath = new Pathfinder(nodeGraph, startNode, endNode);
     Path myPath = newPath.findPath();
 
-    System.out.println("check");
+    System.out.println("Set a break point here to see the path in debugger");
+
     // App.launch(App.class, args);
   }
 }

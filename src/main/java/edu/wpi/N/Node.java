@@ -3,7 +3,7 @@ package edu.wpi.N;
 public class Node implements Comparable<Node> {
   private double xcoord, ycoord;
   public double score;
-  String ID;
+  public String ID;
 
   public Node(double xcoord, double ycoord, String id) {
     this.xcoord = xcoord;
