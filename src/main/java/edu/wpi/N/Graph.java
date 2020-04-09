@@ -59,19 +59,17 @@ public class Graph {
    * @param id2: Id of the second node
    */
   public void addEdge(String id1, String id2) {
-    // TODO:
-    // Add id2 to the list of "connections" of id1
-    // Add id1 to the list of "connections" of id2
-    // Make sure to check for overlap. I.e. if there is an edge between id1 and id2 already, then
-    // don't do anything.
-    // We must be able add an edge between nodes, which don't exist yet (this condition will make it
-    // faster for us to parse CSV file)
+
+    // if no record of such nodes in graph's edges, initialize them
     edges.computeIfAbsent(id1, k -> new LinkedList<String>());
     edges.computeIfAbsent(id2, k -> new LinkedList<String>());
+
+    // Add id1 to the list of "connections" of id2
     if (!edges.get(id1).contains(id2)) {
       LinkedList<String> nodes = edges.get(id1);
       nodes.add(id2);
     }
+    // Add id2 to the list of "connections" of id1
     if (!edges.get(id2).contains(id1)) {
       LinkedList<String> nodes = edges.get(id2);
       nodes.add(id1);
