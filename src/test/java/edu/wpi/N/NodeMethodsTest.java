@@ -1,14 +1,13 @@
 package edu.wpi.N;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class NodeMethodsTest {
 
-  @DisplayName("CompareTo: score of first node < score of second node'")
+  /** Tests that compareTo method will return -1 since score of Node1 is less than score of Node2 */
   @Test
-  public void testCompareToMethod1() {
+  public void compareSmallerWithBiggerScore() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNode");
     testNodeOne.score = 5;
     Node testNodeTwo = new Node(6.3, 2.3, "DifferentName");
@@ -18,61 +17,58 @@ public class NodeMethodsTest {
     Assertions.assertEquals(testNodeOne.compareTo(testNodeTwo), -1);
   }
 
-  @DisplayName("CompareTo: score of first node > score of second node")
+  /** Tests that compareTo method will return 1 since score of Node1 > score of Node2 */
   @Test
-  public void testCompareToMethod2() {
+  public void compareBiggerWithSmallerScore() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNode");
     testNodeOne.score = 6;
     Node testNodeTwo = new Node(6.3, 2.3, "DifferentName");
     testNodeTwo.score = 5;
 
-    // Score of testNodeOne is smaller than testNodeTwo score
     Assertions.assertEquals(testNodeOne.compareTo(testNodeTwo), 1);
   }
 
-  @DisplayName("CompareTo: score of first node = score of second node")
+  /** Tests that compareTo method will return 0, since 2 Nodes have equal scores */
   @Test
-  public void testCompareToMethod3() {
+  public void compareSameScores() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNode");
     testNodeOne.score = 5;
     Node testNodeTwo = new Node(6.3, 2.3, "DifferentName");
     testNodeTwo.score = 5;
 
-    // Score of testNodeOne is smaller than testNodeTwo score
     Assertions.assertEquals(testNodeOne.compareTo(testNodeTwo), 0);
   }
 
-  @DisplayName("CompareTo: null as input")
+  /** Tests that compareTo method will throw NullPointerException if Node1 is compared with Null */
   @Test
-  public void testCompareToMethod4() {
+  public void compareWithNull() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNode");
     testNodeOne.score = 5;
 
-    // Score of testNodeOne is smaller than testNodeTwo score
     Assertions.assertThrows(NullPointerException.class, () -> testNodeOne.compareTo(null));
   }
 
-  @DisplayName("Equals: similar node IDs")
+  /** Tests that equals method returns true if IDs of the two nodes are the same */
   @Test
-  public void testEquals1() {
+  public void testNodesEqual() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNodeOne");
     Node testNodeTwo = new Node(1.1, 6.7, "TestNodeOne");
 
     Assertions.assertEquals(testNodeOne.equals(testNodeTwo), true);
   }
 
-  @DisplayName("Equals: different node IDs")
+  /** Tests that equals method returns false if IDs of the two nodes are NOT the same */
   @Test
-  public void testEquals2() {
+  public void testNodesDoNotEqual() {
     Node testNodeOne = new Node(5.5, 6.7, "TestNodeOne");
     Node testNodeTwo = new Node(1.1, 6.7, "TestNodeTwo");
 
     Assertions.assertEquals(testNodeOne.equals(testNodeTwo), false);
   }
 
-  @DisplayName("Equals: compare with Null")
+  /** Tests that equals method returns false if we pass Null as a parameter */
   @Test
-  public void testEquals3() {
+  public void testEqualToNull() {
     Node testNodeOne = new Node(1, 2, "TestNodeOne");
     Assertions.assertEquals(testNodeOne.equals(null), false);
   }

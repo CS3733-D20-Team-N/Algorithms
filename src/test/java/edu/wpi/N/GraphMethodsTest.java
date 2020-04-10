@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 
-public class Tests {
+public class GraphMethodsTest {
 
   InputStream input = Main.class.getResourceAsStream("csv/MapCoordinates.csv");
   CSVParser parser = new CSVParser();

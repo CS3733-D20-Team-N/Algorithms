@@ -2,14 +2,13 @@ package edu.wpi.N;
 
 import java.util.LinkedList;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PathfinderMethodsTest {
 
-  @DisplayName("findPath: usual case")
+  /** Tests that findPath returns a Path object with the best route from H4 to H8 */
   @Test
-  public void findPath1() {
+  public void findPathNormalCase() {
     Graph testGraph = new Graph();
     // create nodes
     Node n1 = new Node(6, 10, "H1");
@@ -64,9 +63,12 @@ public class PathfinderMethodsTest {
     }
   }
 
-  @DisplayName("findPath: when start and end nodes have edge to each other")
+  /**
+   * Tests that findPath method return a Path object with route consisting of 2 Nodes, since start
+   * and end nodes are neighbors
+   */
   @Test
-  public void findPath2() {
+  public void findPathStartIsNeighborWithEndNode() {
     Graph testGraph = new Graph();
     // create nodes
     Node n1 = new Node(6, 10, "H1");
@@ -118,9 +120,12 @@ public class PathfinderMethodsTest {
     }
   }
 
-  @DisplayName("findPath: end node, which doesn't have an edge to any node")
+  /**
+   * Tests that findPath throws NullPointerException if the destination given is not connected to
+   * any node
+   */
   @Test
-  public void findPath3() {
+  public void findPathDestinationNotFound() {
     Graph testGraph = new Graph();
     // create nodes
     Node n1 = new Node(6, 10, "H1");
@@ -166,9 +171,12 @@ public class PathfinderMethodsTest {
     Assertions.assertThrows(NullPointerException.class, () -> pfinder.findPath());
   }
 
-  @DisplayName("findPath: start node, which doesn't have an edge to any node")
+  /**
+   * Tests that findPath method throws NullPointerException if start Node doesn't have a connection
+   * to any node (including end node)
+   */
   @Test
-  public void findPath4() {
+  public void findPathStartNodeHasNoEdges() {
     Graph testGraph = new Graph();
     // create nodes
     Node n1 = new Node(6, 10, "H1");
@@ -215,9 +223,12 @@ public class PathfinderMethodsTest {
     Assertions.assertThrows(NullPointerException.class, () -> pfinder.findPath());
   }
 
-  @DisplayName("findPath: start node = end node")
+  /**
+   * Tests that findPath method returns a Path object with only one node in its route since Start
+   * Node = End Node
+   */
   @Test
-  public void findPath5() {
+  public void findPathEndIsStartNode() {
     Graph testGraph = new Graph();
     // create nodes
     Node n1 = new Node(6, 10, "H1");
@@ -271,9 +282,12 @@ public class PathfinderMethodsTest {
 
   //  to test generatePath: uncomment the necessary test methods make the method itself public
   //  just for the time of testing, then switch back to private after test
-  //  @DisplayName("generatePath: (normal case) input a map")
+  //  /**
+  //  * Tests that generatePath function generates a correct route from Start to End nodes
+  //  * given a Map cameFrom ("NodeID", "NodeID-came-from")
+  //  */
   //  @Test
-  //  public void generatePathTest1() {
+  //  public void generateCorrectPathGivenUsualCaseMap() {
   //    Graph testGraph = new Graph();
   //
   //    // create nodes
@@ -304,9 +318,11 @@ public class PathfinderMethodsTest {
   //    Assertions.assertEquals(pfinder.generatePath(cameFrom).getPath(), actualPathList);
   //  }
   //
-  //  @DisplayName("generatePath: the map is empty")
+  //  /**
+  //  * Tests that generatePath method throws NullPointerException, given empty map
+  //  */
   //  @Test
-  //  public void generatePathTest2() {
+  //  public void generatePathGivenEmptyMap() {
   //    Graph testGraph = new Graph();
   //
   //    // create nodes
